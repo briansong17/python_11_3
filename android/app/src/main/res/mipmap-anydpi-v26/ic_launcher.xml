@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 다양한 안드로이드 홈 화면 모양에 맞게 아이콘을 잘라 표시합니다. -->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@android:color/white" />
+    <foreground android:drawable="@drawable/ic_signal" />
+</adaptive-icon>

@@ -1,0 +1,4 @@
+// 호환되는 안드로이드 빌드 플러그인 버전을 고정합니다.
+plugins {
+    id 'com.android.application' version '8.9.2' apply false
+}

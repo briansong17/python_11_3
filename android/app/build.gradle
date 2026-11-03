@@ -1,0 +1,22 @@
+// 기존 웹앱을 표시하는 가벼운 안드로이드 앱을 빌드합니다.
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'kr.briansong.airsignal'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'kr.briansong.airsignal'
+        minSdk 26
+        targetSdk 35
+        versionCode 1
+        versionName '1.0.0'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildTypes {
+        debug { applicationIdSuffix '.debug' }
+        release { minifyEnabled false }
+    }
+}

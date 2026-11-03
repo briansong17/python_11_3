@@ -1,0 +1,10 @@
+// 안드로이드 빌드에 필요한 공식 저장소를 설정합니다.
+pluginManagement {
+    repositories { google(); mavenCentral(); gradlePluginPortal() }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories { google(); mavenCentral() }
+}
+rootProject.name = 'AirSignal'
+include ':app'

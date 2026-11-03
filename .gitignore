@@ -6,3 +6,10 @@
 node_modules/
 # 빌드 결과는 Vercel에서 생성하므로 소스 저장소에서 제외합니다.
 dist/
+# 안드로이드 빌드 캐시, 개인 SDK 경로와 서명 파일은 제외합니다.
+android/.gradle/
+android/**/build/
+android/local.properties
+*.keystore
+*.jks
+artifacts/
