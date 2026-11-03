@@ -1,0 +1,11 @@
+{
+  "name": "air-traffic-light",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node --env-file=.env.local server.cjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

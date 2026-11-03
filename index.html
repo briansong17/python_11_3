@@ -1,0 +1,75 @@
+<!doctype html>
+<!-- 한국어와 모바일 화면을 설정합니다. -->
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>공기신호등</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- 차트 라이브러리를 먼저 불러온 뒤 화면 스크립트를 실행합니다. -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" defer></script>
+  <!-- 화면 스크립트는 /api/dust를 통해 서버에서 대기정보를 받습니다. -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- 맨 위에서 조회할 시도를 선택합니다. -->
+    <header>
+      <a class="brand" href="./index.html"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span>공기신호등<span class="brand-sub">우리 동네 공기 관측소</span></a>
+      <div class="controls">
+        <label for="region">조회 지역</label>
+        <select id="region">
+          <option>전국</option><option selected>서울</option><option>부산</option>
+          <option>대구</option><option>인천</option><option>광주</option>
+          <option>대전</option><option>울산</option><option>세종</option>
+          <option>경기</option><option>강원</option><option>충북</option>
+          <option>충남</option><option>전북</option><option>전남</option>
+          <option>경북</option><option>경남</option><option>제주</option>
+        </select>
+        <button id="refresh" type="button">새로고침</button>
+      </div>
+    </header>
+    <!-- 정보의 순서를 드러내는 짧은 도입부입니다. -->
+    <div class="page-intro"><p>오늘의 공기를 읽다</p><span>지역별 실시간 대기 관측</span></div>
+    <div class="dashboard">
+    <!-- 평균은 정상 측정값이 있는 측정소만으로 계산합니다. -->
+    <section class="summary unknown" aria-labelledby="summary-title">
+      <div class="summary-content">
+        <p class="eyebrow">지금, 우리 지역의 공기</p>
+        <h1 id="summary-title">서울 평균 미세먼지</h1>
+        <!-- 평균 농도로 대표 상태를 표시하며 측정소 등급과 구분합니다. -->
+        <div class="signal" aria-live="polite"><span id="signal-emoji" aria-hidden="true">⚪</span><strong id="signal-label">불러오는중...</strong></div>
+        <p id="guidance">불러오는중...</p>
+        <div class="average"><strong id="average">—</strong><span>마이크로그램/세제곱미터</span></div>
+        <p id="average-note">측정 정보를 기다리고 있습니다.</p>
+      </div>
+      <!-- 현재 상태만 밝게 켜지는 신호등으로 등급을 시각화합니다. -->
+      <div class="traffic-light" aria-hidden="true"><span class="lamp lamp-good"></span><span class="lamp lamp-normal"></span><span class="lamp lamp-bad"></span><span class="lamp lamp-very-bad"></span></div>
+      <div class="summary-bottom"><span>미세먼지 평균 기준</span><span>측정소별 수치는 아래에서 확인하세요 ↓</span></div>
+    </section>
+    <!-- 유효한 미세먼지 수치가 높은 측정소를 최대 열 곳까지 비교합니다. -->
+    <section class="chart-section" aria-labelledby="chart-title">
+      <div class="section-heading"><div><p class="section-kicker">농도 비교</p><h2 id="chart-title">어디가 가장 높을까요?</h2></div><span class="top-label">상위 10곳</span></div>
+      <p class="chart-unit">미세먼지 · 마이크로그램/세제곱미터</p>
+      <p id="chart-status" role="status">불러오는중...</p>
+      <div id="chart-container" class="chart-container" hidden>
+        <canvas id="dust-chart" role="img" aria-label="측정소별 미세먼지 상위 10곳 가로 막대그래프"></canvas>
+      </div>
+      <p id="chart-description" class="visually-hidden"></p>
+    </section>
+    </div>
+    <!-- 색을 구별하기 어려워도 등급 이름을 읽을 수 있습니다. -->
+    <section class="stations" aria-labelledby="stations-title" aria-busy="false">
+      <div class="section-heading"><h2 id="stations-title">우리 지역 측정소 <span id="count">0곳</span></h2><p>카드 색상은 미세먼지 등급 기준</p></div>
+      <ul class="legend" aria-label="미세먼지 등급 색상">
+        <li class="good">좋음</li><li class="normal">보통</li><li class="bad">나쁨</li><li class="very-bad">매우나쁨</li><li class="unknown">등급 없음</li>
+      </ul>
+      <p id="status" role="status" aria-live="polite">불러오는중...</p>
+      <div id="cards" class="cards"></div>
+    </section>
+    <!-- 데이터 출처와 평균의 의미를 안내합니다. -->
+    <footer><a href="https://www.data.go.kr/data/15073861/openapi.do" target="_blank" rel="noopener noreferrer">자료 제공 · 한국환경공단 에어코리아</a><p>실시간 자료는 확정 전 관측값입니다. 평균은 표시된 측정소의 단순 산술평균이며, 측정되지 않은 값은 제외합니다.</p></footer>
+    <noscript>대기정보를 보려면 브라우저에서 자바스크립트를 허용해 주세요.</noscript>
+  </main>
+</body>
+</html>
