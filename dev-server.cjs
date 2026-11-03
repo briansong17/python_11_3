@@ -1,6 +1,6 @@
 "use strict";
 
-// 로컬에서도 Vercel과 같은 API 함수를 실행하는 개발 서버입니다.
+// 로컬 전용 개발 서버이며 Vercel의 자동 서버 진입점과 구분합니다.
 const http = require("node:http");
 const fs = require("node:fs/promises");
 const path = require("node:path");
